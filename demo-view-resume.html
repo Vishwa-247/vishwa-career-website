@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>View Resume - Demo</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- custom css -->
+        <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <style>
+            .resume-container {
+                max-width: 800px;
+                margin: 40px auto;
+                padding: 40px;
+                background: white;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
+            .resume-header {
+                text-align: center;
+                border-bottom: 3px solid #007bff;
+                padding-bottom: 20px;
+                margin-bottom: 30px;
+            }
+            .resume-header h1 {
+                margin: 0;
+                color: #333;
+            }
+            .resume-header h3 {
+                margin: 10px 0;
+                color: #666;
+            }
+            .contact-info {
+                text-align: center;
+                margin: 20px 0;
+                color: #555;
+            }
+            .contact-info p {
+                margin: 5px 0;
+            }
+            .section {
+                margin: 30px 0;
+            }
+            .section h2 {
+                color: #007bff;
+                border-bottom: 2px solid #007bff;
+                padding-bottom: 10px;
+                margin-bottom: 15px;
+            }
+            .action-buttons {
+                text-align: center;
+                margin: 30px 0;
+            }
+            .action-buttons button {
+                margin: 0 10px;
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .action-buttons button:hover {
+                background-color: #0056b3;
+            }
+            @media print {
+                .navbar, .action-buttons {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class = "navbar bg-white">
+            <div class="container">
+                <div class = "navbar-content">
+                    <div class = "brand-and-toggler">
+                        <a href="index.html" class="navbar-brand">
+                            <img src = "assets/images/curriculum-vitae.png" alt = "" class = "navbar-brand-icon">
+                            <span class = "navbar-brand-text">Quick <span>resume.</span>
+                        </a>
+                        <div class="back-button">
+                            <button onclick="goBack()">Back</button>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="resume-container" id="resume-content">
+            <div class="resume-header">
+                <h1 id="fullname"></h1>
+                <h3 id="designation"></h3>
+            </div>
+
+            <div class="contact-info">
+                <p><i class="bi bi-envelope"></i> <span id="email"></span></p>
+                <p><i class="bi bi-telephone"></i> <span id="phone"></span></p>
+                <p><i class="bi bi-geo-alt"></i> <span id="address"></span></p>
+            </div>
+
+            <div class="section">
+                <h2>Summary</h2>
+                <p id="summary"></p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button onclick="printResume()"><i class="bi bi-printer"></i> Print Resume</button>
+            <button onclick="goBack()"><i class="bi bi-arrow-left"></i> Back to List</button>
+        </div>
+
+        <script>
+            function goBack() {
+                window.location.href = "demo-account.html";
+            }
+
+            function printResume() {
+                window.print();
+            }
+
+            // Load resume data
+            window.onload = function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const resumeId = urlParams.get('id');
+                
+                if (resumeId !== null) {
+                    const resumes = JSON.parse(localStorage.getItem('demoResumes') || '[]');
+                    const resume = resumes[parseInt(resumeId)];
+                    
+                    if (resume) {
+                        const fullname = `${resume.firstname || ''} ${resume.middlename || ''} ${resume.lastname || ''}`.trim();
+                        document.getElementById('fullname').textContent = fullname;
+                        document.getElementById('designation').textContent = resume.designation || '';
+                        document.getElementById('email').textContent = resume.email || '';
+                        document.getElementById('phone').textContent = resume.phoneno || '';
+                        document.getElementById('address').textContent = resume.address || '';
+                        document.getElementById('summary').textContent = resume.summary || '';
+                    } else {
+                        document.getElementById('resume-content').innerHTML = '<p>Resume not found.</p>';
+                    }
+                } else {
+                    document.getElementById('resume-content').innerHTML = '<p>No resume ID specified.</p>';
+                }
+            };
+        </script>
+    </body>
+</html>
