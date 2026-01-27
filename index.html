@@ -22,10 +22,9 @@
                     <span class="navbar-brand-text">Quick <span>resume.</span>
                 </a>
                 
-                <!-- New login button -->
+                <!-- Demo mode button -->
                 <div class="login-signup-btns flex">
-                    <button type="button" class="navbar-toggler-btn" onclick="redirectToLogin()">Login</button>
-                    <button type="button" class="navbar-toggler-btn signup-btn" onclick="redirectToSignup()">Signup</button>
+                    <button type="button" class="navbar-toggler-btn" onclick="redirectToDemo()">Try Demo</button>
                 </div>
             </div>
         </div>
@@ -39,7 +38,7 @@
             <h1 class="lg-title">Your resume is your ticket to the interview. Make it a top 2% contender.</h1>
             <p class="text-dark fs-18">Use professional field-tested resume templates that follow that exact 'resume rules' employers look for. Easy to use and done within minutes - try now for free!</p>
             <!-- Modified button with onclick event -->
-            <a href="#" class="btn btn-primary text-uppercase" onclick="redirectToLogin()">create my resume</a>
+            <a href="demo-account.html" class="btn btn-primary text-uppercase">create my resume</a>
             <img src="assets/images/dublin-resume-templates.avif" alt="Resume Templates">
         </div>
     </div>
@@ -55,7 +54,7 @@
                 <h2 class="lg-title">Create a standout resume in minutes!</h2>
                 <p class="text">Your dream job is within reach. Gain the edge you need with the most powerful online resume maker. Built with expert insights to highlight your skills, refined by data to match current hiring trends, and proven by millions of successful professionals who landed their dream roles. </p>
                 <div class="btn-roup">
-                    <a href="#" class="btn btn-primary text-uppercase" onclick="redirectToLogin()">create my resume</a>
+                    <a href="demo-account.html" class="btn btn-primary text-uppercase">create my resume</a>
                 </div>
             </div>
         </div>
@@ -110,20 +109,10 @@
 </div> -->
 
 <script>
-    function redirectToLogin() {
-        // Redirect to login page
-        window.location.href = "login.html";
+    function redirectToDemo() {
+        // Redirect to demo account page
+        window.location.href = "demo-account.html";
     }
-
-    function redirectToSignup() {
-        // Redirect to signup page
-        window.location.href = "signup.html";
-    }
-
-    // // Function to go back to the previous page
-    // function goBack() {
-    //     window.history.back();
-    // }
 </script>
 
 </body>
