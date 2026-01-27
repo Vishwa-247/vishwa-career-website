@@ -104,7 +104,7 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const resumeId = urlParams.get('id');
                 
-                if (resumeId !== null) {
+                if (resumeId !== null && !isNaN(resumeId)) {
                     const resumes = JSON.parse(localStorage.getItem('demoResumes') || '[]');
                     const resume = resumes[parseInt(resumeId)];
                     
